@@ -136,8 +136,8 @@ public void A(){
   String slname = tflname.getText();
   String suname = tfuname.getText();
   String spass = new String(tfpass.getPassword());
-  String respass = new String(tfrepass.getPassword());
-  if(sfname.isEmpty() && slname.isEmpty() && suname.isEmpty() && spass.isEmpty() &&respass.isEmpty()){
+ 
+  if(sfname.isEmpty() && slname.isEmpty() && suname.isEmpty() && spass.isEmpty() ){
       JOptionPane.showMessageDialog(rootPane, "Please Fill Up all The Information Needed");
       
   }else{
@@ -172,7 +172,7 @@ public void ctf(){
     tflname.setText("");
     tfuname.setText("");
     tfpass.setText("");
-    tfrepass.setText("");
+   
 }
     /**
      * @param args the command line arguments
