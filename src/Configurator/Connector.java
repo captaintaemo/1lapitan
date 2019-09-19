@@ -11,5 +11,10 @@ package Configurator;
  */
 public class Connector {
  public static String conURL = "jdbc:mysql://localhost/dbmslapitan21?"
-                    + "user=root&password=";    
+                    + "user=root&password="; 
+ 
+ 
+ public String getCon(){
+     return conURL;
+ }
 }

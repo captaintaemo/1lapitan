@@ -125,7 +125,7 @@ public class Create_Account extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-A();
+ A();
 this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 public void A(){

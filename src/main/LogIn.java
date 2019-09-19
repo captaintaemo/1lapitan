@@ -7,7 +7,7 @@ package main;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static Configurator.Connector.conURL;
+import Configurator.Connector;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,7 +19,8 @@ import javax.swing.JOptionPane;
  * @author user name
  */
 public class LogIn extends javax.swing.JFrame {
-
+    private Connector connector = new Connector();
+    
     /**
      * Creates new form LogIn
      */
@@ -42,6 +43,7 @@ public class LogIn extends javax.swing.JFrame {
         tfuname = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +64,9 @@ public class LogIn extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("LOG IN");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,11 +89,17 @@ public class LogIn extends javax.swing.JFrame {
                             .addComponent(tfpw)
                             .addComponent(tfuname))))
                 .addGap(38, 38, 38))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(177, 177, 177)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfuname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -96,7 +107,7 @@ public class LogIn extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfpw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(77, 77, 77)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -112,31 +123,36 @@ ca.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     log_in();   // TODO add your handling code here:
+     this.log_in();   // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 public void log_in(){
     main_frame mf = new main_frame();
     String suname = tfuname.getText();
     String supass = new String(tfpw.getPassword());
+    
+    
     try{
         Class.forName("com.mysql.jdbc.Driver");
-        Connection con = DriverManager.getConnection(conURL);
+        //Connection con = DriverManager.getConnection(conURL);
+        Connection con = DriverManager.getConnection(connector.getCon());
         PreparedStatement pstmt = con.prepareStatement("Select * from createacc where username = ?"
                 + "and password = ?;");
         pstmt.setString(1, suname);
         pstmt.setString(2, supass);
         ResultSet rs = pstmt.executeQuery();
         if(rs.next()){
-            mf.setVisible(true);
+            
+           String name = suname;
+           mf.show(name);
+           mf.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(rootPane, "Incorrect Username or Passwprd","Log-In Failed",JOptionPane.ERROR_MESSAGE);
         }
         
-    }   catch (ClassNotFoundException ex) {
-            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+    }   catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
 }
     /**
      * @param args the command line arguments
@@ -178,6 +194,7 @@ public void log_in(){
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField tfpw;
     private javax.swing.JTextField tfuname;
     // End of variables declaration//GEN-END:variables
