@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -18,7 +18,9 @@ import javax.swing.table.DefaultTableModel;
 public class AddProduct {
 main_frame mf = new main_frame();
 private Connector connection = new Connector();
-    public void ap(String pn,int pq, double pr){
+    public int ap(String pn,int pq, double pr){
+        
+        int x = 0;
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(connection.getCon());
@@ -28,16 +30,43 @@ private Connector connection = new Connector();
             p.setString(1, pn);
             p.setInt(2, pq);
             p.setDouble(3, pr);
-            p.executeUpdate();
-            JOptionPane.showMessageDialog(mf, "Saved","Successfull",JOptionPane.INFORMATION_MESSAGE);
+           x= p.executeUpdate();
             
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(AddProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return x;
     }
 
-   
-    
+   public void dproduct(String id){
+       try{
+           Class.forName("com.mysql.jdbc.Driver");
+           Connection c = DriverManager.getConnection(connection.getCon());
+           String q ="Delete from add_product where p_id = ?";
+           PreparedStatement p = c.prepareStatement(q);
+           p.setString(1, id);
+           p.executeUpdate();
+           JOptionPane.showMessageDialog(mf, "Successfully Deleted","Successfull",JOptionPane.INFORMATION_MESSAGE);
+       } catch (ClassNotFoundException | SQLException ex) {
+        Logger.getLogger(AddProduct.class.getName()).log(Level.SEVERE, null, ex);
+    }
+   }
+    public void upproduct(String id ,String name,int quantity, double price){
+        
+    }
+public void UpdateProduct(String id, String name,int quantity,double price){
+    try{
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection c = DriverManager.getConnection(connection.getCon());
+        PreparedStatement p = c.prepareStatement("UPDATE`add_product` SET `p_name`=?, "
+                + "`p_quantity`=?, `p_price`=? WHERE  `p_id`=?; ");
+        
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(AddProduct.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(AddProduct.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
 }
         
 
