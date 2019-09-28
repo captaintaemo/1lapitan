@@ -240,11 +240,14 @@ this.setVisible(false);
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 AddProduct aps = new AddProduct();
         int selrow = tblload.getSelectedRow();
-        String name = tblload.getValueAt(selrow, 1).toString();
-    if(selrow !=-1){
         
+    if(selrow == -1){
+        JOptionPane.showMessageDialog(rootPane, "Please Select A Row to be deleted","Error",JOptionPane.WARNING_MESSAGE);
     
-        int x = JOptionPane.showConfirmDialog(rootPane, 
+       
+    }else{
+        String name = tblload.getValueAt(selrow, 1).toString();
+         int x = JOptionPane.showConfirmDialog(rootPane, 
             "ARE YOU SURE YOU WANT TO DELETE THIS RECORD IT CANNOT BE RECOVERED",
             "CONFORMATION",JOptionPane.OK_CANCEL_OPTION);
         if(x == JOptionPane.OK_OPTION){
