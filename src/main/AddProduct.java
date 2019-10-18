@@ -54,19 +54,27 @@ private Connector connection = new Connector();
     public void upproduct(String id ,String name,int quantity, double price){
         
     }
-public void UpdateProduct(String id, String name,int quantity,double price){
+public int UpdateProduct(String id, String name,int quantity, double price){
+    int u =0;
+    
     try{
         Class.forName("com.mysql.jdbc.Driver");
         Connection c = DriverManager.getConnection(connection.getCon());
         PreparedStatement p = c.prepareStatement("UPDATE`add_product` SET `p_name`=?, "
                 + "`p_quantity`=?, `p_price`=? WHERE  `p_id`=?; ");
-        
+       p.setString(1,name);
+       p.setInt(2, quantity);
+       p.setDouble(3, price);
+       p.setString(4,id);
+       u = p.executeUpdate();
     } catch (ClassNotFoundException ex) {
         Logger.getLogger(AddProduct.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
         Logger.getLogger(AddProduct.class.getName()).log(Level.SEVERE, null, ex);
     }
+    return u;
 }
+
 }
         
 
