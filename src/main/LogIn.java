@@ -175,11 +175,20 @@ public void log_in(){
         pstmt.setString(2, supass);
         ResultSet rs = pstmt.executeQuery();
         if(rs.next()){
-           String name = suname;
-           main_frame mf = new main_frame(name);        
+          int x = Integer.parseInt(rs.getString("type"));
+          String name = rs.getString("fname");
+           if (x == 1){
+           
+           adminframe mf = new adminframe(name);        
            mf.setLocationRelativeTo(null);
            mf.setVisible(true);
            this.setVisible(false);
+           }else if(x == 0){
+               main_frame mn = new main_frame();
+               mn.setLocationRelativeTo(null);
+               mn.setVisible(true);
+               this.setVisible(false);
+           }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Incorrect Username or Passwprd","Log-In Failed",JOptionPane.ERROR_MESSAGE);
         }
