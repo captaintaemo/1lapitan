@@ -119,7 +119,7 @@ public class main_frame extends javax.swing.JFrame {
 
         addquantf.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 10));
 
-        lbladdquan.setText("Please Select How Many You will add");
+        lbladdquan.setText("Please Select How Many You will add ???");
 
         btnquan.setText("Add Quantity");
         btnquan.addActionListener(new java.awt.event.ActionListener() {
@@ -154,12 +154,11 @@ public class main_frame extends javax.swing.JFrame {
                                 .addComponent(lblid)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(updateLayout.createSequentialGroup()
-                        .addComponent(lbladdquan, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbladdquan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addquantf, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnquan, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnquan, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         updateLayout.setVerticalGroup(
@@ -195,6 +194,11 @@ public class main_frame extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 255));
 
+        tfkeyword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfkeywordActionPerformed(evt);
+            }
+        });
         tfkeyword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tfkeywordKeyReleased(evt);
@@ -403,7 +407,7 @@ this.setVisible(false);
         tfquantity.setEnabled(false);
         addquantf.setVisible(false);
         lbladdquan.setVisible(false);
-        update.setSize(400,400);
+        update.setSize(450,450);
         update.setLocationRelativeTo(null);
         update.setVisible(true);
         
@@ -448,17 +452,26 @@ this.setVisible(false);
    int y = Integer.parseInt(addquantf.getValue().toString());
    int z = 0;
     if(btnquan.getText() == "Add Quantity"){
+         tfprn.setEnabled(false);
+         tfprice.setEnabled(false);
          lbladdquan.setVisible(true);
          addquantf.setVisible(true);
          btnquan.setText("Save");
+         
     }else{
         z = x+y;
+        tfprn.setEnabled(true);
+         tfprice.setEnabled(true);
          lbladdquan.setVisible(false);
          addquantf.setVisible(false);
          tfquantity.setValue(z);
          btnquan.setText("Add Quantity"); 
     }
     }//GEN-LAST:event_btnquanActionPerformed
+
+    private void tfkeywordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfkeywordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfkeywordActionPerformed
 
     /**
      * @param args the command line arguments

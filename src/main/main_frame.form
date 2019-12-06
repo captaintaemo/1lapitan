@@ -61,12 +61,11 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="lbladdquan" min="-2" pref="186" max="-2" attributes="0"/>
+                          <Component id="lbladdquan" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="addquantf" min="-2" pref="61" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnquan" min="-2" pref="100" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -171,7 +170,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbladdquan">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Please Select How Many You will add"/>
+            <Property name="text" type="java.lang.String" value="Please Select How Many You will add ???"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnquan">
@@ -288,6 +287,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="tfkeyword">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfkeywordActionPerformed"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfkeywordKeyReleased"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfkeywordKeyTyped"/>
           </Events>
