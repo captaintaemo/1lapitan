@@ -204,7 +204,7 @@ private Connector connections = new Connector();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        main_frame lg = new main_frame();
+        pos lg = new pos();
         lg.setVisible(true);
         this.setVisible(false);         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
