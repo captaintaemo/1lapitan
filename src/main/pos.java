@@ -133,7 +133,48 @@ public class pos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+posfunc pos = new posfunc();
 
+    int checkProduct(String id){
+       int r = 0;
+       
+       int rows = productsTable.getRowCount();
+       
+       if(rows > 0){
+           
+           for(int i = 0; i < rows; i++){
+               Object tid = productsTable.getValueAt(i, 0);
+               if(id.equals(tid)){
+                   Object tqty = productsTable.getValueAt(i, 1);
+                   Object price = productsTable.getValueAt(i, 3);
+                   double dprice = Double.parseDouble(price.toString());
+         
+                   int new_tqty = Integer.parseInt(tqty.toString());
+                   int newQty = new_tqty + 1;
+                   
+                   double subtotal = dprice * newQty;
+                   
+                   productsTable.setValueAt(newQty, i, 1);
+                   productsTable.setValueAt(subtotal, i, 4);
+                   r = 1;
+               }
+           }
+           
+       } 
+       return r;
+    }
+        double totals(){
+        double total = 0;
+        int rows = productsTable.getRowCount();
+        if(rows > 0){
+            for(int i = 0; i < rows; i++){
+                Object tsubtotal = productsTable.getValueAt(i, 4);
+                double dsubtotal = Double.parseDouble(tsubtotal.toString());
+                total += dsubtotal;
+            }
+        }
+        return total;
+    }
     private void barcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barcodeActionPerformed
         // TODO add your handling code here:
         String id = barcode.getText();
@@ -141,7 +182,7 @@ public class pos extends javax.swing.JFrame {
         int r = checkProduct(id);
 
         if(r!=1){
-            posfobj.getProduct(id, productsTable);
+            pos.getproduct(id, productsTable);
         }
 
         double t = totals();
